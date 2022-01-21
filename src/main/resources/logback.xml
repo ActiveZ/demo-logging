@@ -7,10 +7,6 @@
                 %msg%n</pattern>
         </encoder>
     </appender>
-    <!-- regle de logs par defaut. Ici : niveau INFO vers la sortie standard -->
-    <root level="INFO">
-        <appender-ref ref="STDOUT" />
-    </root>
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>app.log</file>
@@ -21,7 +17,18 @@
                 %msg%n</pattern>
         </encoder>
     </appender>
-    <logger name="dev.console" level="INFO">
+
+    <logger name="dev" level="DEBUG" additivity="false">
+<!--        envoi en console-->
         <appender-ref ref="FILE" />
+<!--        envoi dans fichier app.log-->
+        <appender-ref ref="STDOUT" />
     </logger>
+
+    <!-- regle de logs par defaut. Ici : niveau INFO vers la sortie standard -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+
 </configuration>
